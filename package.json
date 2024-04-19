@@ -8,8 +8,8 @@
     "start": "next start",
     "typecheck": "tsc --noEmit",
     "lint": "next lint",
-    "jest": "jest",
-    "jest:watch": "jest --watch",
+    "jest": "jest --coverage",
+    "jest:watch": "jest --watch --coverage",
     "prettier:check": "prettier --check \"**/*.{js,ts,tsx}\"",
     "prettier:write": "prettier --write \"**/*.{js,ts,tsx}\"",
     "test": "npm run prettier:check && npm run lint && npm run typecheck && npm run jest",
@@ -46,5 +46,6 @@
     "lint-staged": "^15.2.2",
     "prettier": "^3.2.5",
     "typescript": "^5.4.5"
-  }
+  },
+  "packageManager": "yarn@4.1.1"
 }
