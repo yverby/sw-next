@@ -2,6 +2,7 @@
  * A Starship
  */
 export interface Starship {
+  id: number;
   /**
    * The number of non-essential people this starship can transport.
    */

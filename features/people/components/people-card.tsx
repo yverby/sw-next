@@ -12,14 +12,14 @@ import {
 
 import { People } from '../types';
 
-export function PeopleListCard({ data }: { data: Partial<People> }) {
+export function PeopleCard({ data }: { data: Partial<People> }) {
   return (
-    <Card variant="outline">
+    <Card variant="outline" bg="transparent">
       <CardHeader>
         <Heading
           as="h3"
           opacity={0.9}
-          fontSize={25}
+          fontSize={28}
           noOfLines={1}
           fontWeight="900"
         >

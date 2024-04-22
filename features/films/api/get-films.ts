@@ -4,7 +4,7 @@ import { GetResourceParams, GetResourceResponse } from '@/types/api';
 import { Film } from '../types';
 
 interface GetFilmsParams extends GetResourceParams {
-  character?: string | number;
+  characters?: string | number;
 }
 
 interface GetFilmsResponse extends GetResourceResponse<Film> {}

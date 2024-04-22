@@ -8,7 +8,7 @@ import { Button, SimpleGrid, Stack } from '@chakra-ui/react';
 import { Placeholder, Switch, SwitchCase } from '@/components/ui';
 
 import { getPeopleInfiniteOptions } from '../api/get-people';
-import { PeopleListCard } from './people-list-card';
+import { PeopleCard } from './people-card';
 
 export function PeopleList() {
   const people = useInfiniteQuery(getPeopleInfiniteOptions());
@@ -36,7 +36,7 @@ export function PeopleList() {
           >
             {list.map((data) => (
               <Link key={data.id} scroll={false} href={`/people/${data.id}`}>
-                <PeopleListCard data={data} />
+                <PeopleCard data={data} />
               </Link>
             ))}
           </SimpleGrid>

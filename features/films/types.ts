@@ -2,6 +2,7 @@
  * A Star Wars film
  */
 export interface Film {
+  id: number;
   /**
    * The starship resources featured within this film.
    */

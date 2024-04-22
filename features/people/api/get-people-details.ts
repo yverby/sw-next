@@ -12,7 +12,7 @@ export interface GetPeopleDetailsParams {
 export async function getPeopleDetails(params: GetPeopleDetailsParams) {
   const [details, films, starships] = await Promise.all([
     getPeopleById({ id: params.id }),
-    getFilms({ character: params.id }).then((res) => res.results),
+    getFilms({ characters: params.id }).then((res) => res.results),
     getStarships({ pilots: params.id }).then((res) => res.results),
   ]);
 
