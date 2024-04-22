@@ -1,7 +1,7 @@
 'use client';
 
 import { useMemo } from 'react';
-import { Link } from '@chakra-ui/next-js';
+import Link from 'next/link';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { Button, SimpleGrid, Stack } from '@chakra-ui/react';
 
@@ -35,12 +35,7 @@ export function PeopleList() {
             templateColumns="repeat(auto-fill, minmax(300px, 1fr))"
           >
             {list.map((data) => (
-              <Link
-                key={data.id}
-                scroll={false}
-                href={`/people/${data.id}`}
-                _hover={{ textDecoration: 'none' }}
-              >
+              <Link key={data.id} scroll={false} href={`/people/${data.id}`}>
                 <PeopleListCard data={data} />
               </Link>
             ))}

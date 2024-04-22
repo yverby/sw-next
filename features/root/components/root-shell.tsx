@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Box, Container, HStack, Heading, Stack } from '@chakra-ui/react';
 
 import { APP_NAME } from '@/config/app';
@@ -14,14 +15,16 @@ export function RootShell({ children }: React.PropsWithChildren) {
         bg="var(--chakra-colors-chakra-body-bg)"
       >
         <Container
-          h={55}
+          h="65px"
           as={HStack}
           maxW="container.xl"
           justify="space-between"
         >
-          <Heading as="h1" size="lg" fontWeight="800">
-            {APP_NAME}
-          </Heading>
+          <Link href="/">
+            <Heading as="h1" size="lg" fontWeight="800" opacity={0.6}>
+              {APP_NAME}
+            </Heading>
+          </Link>
 
           <ToggleMode />
         </Container>

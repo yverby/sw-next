@@ -1,11 +1,20 @@
-import { Placeholder } from '@/components/ui';
+import { HydrationBoundary, dehydrate } from '@tanstack/react-query';
 
-export default function PeopleDetailsPage({
+import { getQueryClient } from '@/lib/query-client';
+import { PeopleDetails } from '@/features/people/components';
+import { getPeopleDetailsOptions } from '@/features/people/api';
+
+export default async function PeopleDetailsPage({
   params,
 }: {
   params: { id: string };
 }) {
+  const queryClient = getQueryClient();
+  await queryClient.fetchQuery(getPeopleDetailsOptions(params));
+
   return (
-    <Placeholder title="People details page" subtitle={`ID: ${params.id}`} />
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <PeopleDetails {...params} />
+    </HydrationBoundary>
   );
 }

@@ -23,3 +23,11 @@ export function getPeopleInfiniteOptions(params?: GetPeopleParams) {
       getURLSearchParam(lastPage.next, 'page', Number),
   });
 }
+
+export interface GetPeopleByIdParams {
+  id: string | number;
+}
+
+export async function getPeopleById(params: GetPeopleByIdParams) {
+  return axios.get<any, People>(`/people/${params.id}`);
+}
