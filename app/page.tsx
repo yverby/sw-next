@@ -1,1 +1,5 @@
-export { RootWelcome as default } from '@/features/root/components';
+import { redirect, RedirectType } from 'next/navigation';
+
+export default function RootPage() {
+  redirect('/people', RedirectType.replace);
+}

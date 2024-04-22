@@ -1,1 +1,1 @@
-export * from './root-welcome';
+export * from './root-shell';

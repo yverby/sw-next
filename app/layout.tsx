@@ -1,10 +1,12 @@
 import { Viewport, Metadata } from 'next/types';
 
+import { APP_NAME } from '@/config/app';
 import { QueryClientProvider } from '@/providers/query-client';
 import { ThemeProvider, ThemeModeProvider } from '@/providers/theme';
+import { RootShell } from '@/features/root/components';
 
 export const metadata: Metadata = {
-  title: 'sw-next',
+  title: APP_NAME,
 };
 
 export const viewport: Viewport = {
@@ -20,7 +22,9 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
       </head>
       <body>
         <QueryClientProvider>
-          <ThemeProvider>{children}</ThemeProvider>
+          <ThemeProvider>
+            <RootShell>{children}</RootShell>
+          </ThemeProvider>
         </QueryClientProvider>
       </body>
     </html>
