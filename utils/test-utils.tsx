@@ -18,5 +18,12 @@ function render(ui: React.ReactNode, renderOptions?: RenderOptions) {
   });
 }
 
+function mocks<T extends Record<string, any>>(mocks: T) {
+  return Object.entries(mocks).reduce(
+    (acc, [key, mock]) => ({ ...acc, [key]: mock }),
+    {} as Record<keyof T, jest.Mock>
+  );
+}
+
 export * from '@testing-library/react';
-export { render, userEvent };
+export { render, userEvent, mocks };

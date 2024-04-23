@@ -1,7 +1,7 @@
 import { queryOptions } from '@tanstack/react-query';
 
 import { getFilms } from '@/features/films/api';
-import { getStarships } from '@/features/sharships/api';
+import { getStarships } from '@/features/starships/api';
 
 import { getPeopleById } from './get-people';
 

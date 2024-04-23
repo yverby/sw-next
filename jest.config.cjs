@@ -2,10 +2,13 @@ const nextJest = require('next/jest');
 
 const createJestConfig = nextJest({ dir: './' });
 
+/** @type {import('jest').Config} */
 const customJestConfig = {
-  testEnvironment: 'jest-environment-jsdom',
   setupFilesAfterEnv: ['<rootDir>/jest.setup.cjs'],
-  moduleNameMapper: { '^@/(.*)$': '<rootDir>/$1' },
+  testEnvironment: 'jest-environment-jsdom',
+  moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/$1',
+  },
   collectCoverageFrom: [
     '**/*.{js,ts,tsx}',
     '!**/node_modules/**',
@@ -25,4 +28,8 @@ const customJestConfig = {
   },
 };
 
-module.exports = createJestConfig(customJestConfig);
+module.exports = async () => ({
+  // To avoid issues with code transformation
+  ...(await createJestConfig(customJestConfig)()),
+  transformIgnorePatterns: [],
+});

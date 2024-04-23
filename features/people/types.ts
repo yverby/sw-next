@@ -1,5 +1,5 @@
 import { Film } from '@/features/films/types';
-import { Starship } from '@/features/sharships/types';
+import { Starship } from '@/features/starships/types';
 
 /**
  * A person within the Star Wars universe
