@@ -1,3 +1,5 @@
+import 'reactflow/dist/style.css';
+
 import { Viewport, Metadata } from 'next/types';
 
 import { APP_NAME } from '@/config/app';

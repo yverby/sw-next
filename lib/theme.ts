@@ -1,24 +1,30 @@
-import { extendTheme, Theme, DeepPartial } from '@chakra-ui/react';
+import {
+  extendTheme,
+  Theme,
+  DeepPartial,
+  ThemeConfig,
+  ThemeComponents,
+} from '@chakra-ui/react';
 
 const colors: DeepPartial<Theme['colors']> = {
   gray: {
-    100: '#B8B8B8',
-    200: '#828282',
-    300: '#696969',
-    400: '#424242',
-    500: '#3B3B3B',
-    600: '#2E2E2E',
-    700: '#242424',
-    800: '#1F1F1F',
-    900: '#141414',
+    100: '#e4e4e7',
+    200: '#d4d4d8',
+    300: '#a1a1aa',
+    400: '#71717a',
+    500: '#52525b',
+    600: '#3f3f46',
+    700: '#27272a',
+    800: '#18181b',
+    900: '#09090b',
   },
 };
 
-const config: Theme['config'] = {
+const config: ThemeConfig = {
   initialColorMode: 'dark',
 };
 
-const components: DeepPartial<Theme['components']> = {
+const components: DeepPartial<ThemeComponents> = {
   Button: {
     defaultProps: {
       variant: 'outline',

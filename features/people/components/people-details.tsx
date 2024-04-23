@@ -1,11 +1,12 @@
 'use client';
 
 import { useQuery } from '@tanstack/react-query';
-import { Card, Stack } from '@chakra-ui/react';
+import { Card, CardBody, Stack } from '@chakra-ui/react';
 
 import { Placeholder, Switch, SwitchCase } from '@/components/ui';
 
 import { getPeopleDetailsOptions } from '../api/get-people-details';
+import { PeopleDetailsGraph } from './people-details-graph';
 import { PeopleCard } from './people-card';
 
 export function PeopleDetails({ id }: { id: string | number }) {
@@ -23,9 +24,13 @@ export function PeopleDetails({ id }: { id: string | number }) {
 
       <SwitchCase condition={details.isSuccess}>
         <Stack flex="1" py={3} spacing={6}>
-          <PeopleCard data={{ ...details.data } as any} />
+          <PeopleCard data={details.data} />
 
-          <Card flex="1" variant="outline" bg="transparent" />
+          <Card variant="outline" flex="1" shadow="md" bg="transparent">
+            <CardBody as={Stack} flex="1" p={0}>
+              <PeopleDetailsGraph data={details.data!} />
+            </CardBody>
+          </Card>
         </Stack>
       </SwitchCase>
     </Switch>

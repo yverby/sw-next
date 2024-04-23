@@ -1,3 +1,6 @@
+import { Film } from '@/features/films/types';
+import { Starship } from '@/features/sharships/types';
+
 /**
  * A person within the Star Wars universe
  */
@@ -67,4 +70,9 @@ export interface People {
    * The birth year of this person. BBY (Before the Battle of Yavin) or ABY (After the Battle of Yavin).
    */
   birthYear: string;
+}
+
+export interface PeopleDetails extends Omit<People, 'films' | 'starships'> {
+  films: Film[];
+  starships: Starship[];
 }

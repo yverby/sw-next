@@ -12,6 +12,7 @@ export function RootShell({ children }: React.PropsWithChildren) {
         top={0}
         zIndex={1}
         borderBottomWidth={1}
+        shadow="sm"
         bg="var(--chakra-colors-chakra-body-bg)"
       >
         <Container
@@ -21,7 +22,7 @@ export function RootShell({ children }: React.PropsWithChildren) {
           justify="space-between"
         >
           <Link href="/">
-            <Heading as="h1" size="lg" fontWeight="800" opacity={0.6}>
+            <Heading as="h1" size="lg" fontWeight="800" opacity={0.9}>
               {APP_NAME}
             </Heading>
           </Link>

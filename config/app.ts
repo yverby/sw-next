@@ -1,1 +1,1 @@
-export const APP_NAME = 'sw-next';
+export const APP_NAME = 'StarWars';

@@ -2,6 +2,7 @@
 
 import { useMemo } from 'react';
 import Link from 'next/link';
+import { flatMap } from 'lodash';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { Button, SimpleGrid, Stack } from '@chakra-ui/react';
 
@@ -14,7 +15,7 @@ export function PeopleList() {
   const people = useInfiniteQuery(getPeopleInfiniteOptions());
 
   const list = useMemo(
-    () => people.data?.pages.flatMap((page) => page.results) ?? [],
+    () => flatMap(people.data?.pages, (page) => page.results),
     [people.data?.pages]
   );
 
@@ -43,6 +44,9 @@ export function PeopleList() {
 
           {people.hasNextPage && (
             <Button
+              h={12}
+              shadow="sm"
+              fontSize={17}
               isLoading={people.isFetchingNextPage}
               onClick={() => people.fetchNextPage()}
             >
