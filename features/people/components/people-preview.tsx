@@ -29,7 +29,7 @@ export function PeoplePreview({ children }: React.PropsWithChildren) {
     >
       <DrawerOverlay />
       <DrawerContent h="80%">
-        <DrawerBody as={Stack}>
+        <DrawerBody as={Stack} p={0} py={6}>
           <Container as={Stack} flex="1" maxW="container.xl">
             {children}
           </Container>

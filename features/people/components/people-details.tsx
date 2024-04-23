@@ -23,7 +23,7 @@ export function PeopleDetails({ id }: { id: string | number }) {
       </SwitchCase>
 
       <SwitchCase condition={details.isSuccess}>
-        <Stack flex="1" py={3} spacing={6}>
+        <Stack flex="1" spacing={6}>
           <PeopleCard data={details.data} />
 
           <Card variant="outline" flex="1" shadow="md" bg="transparent">
