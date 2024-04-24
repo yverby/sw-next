@@ -27,7 +27,7 @@ class ResizeObserver {
 
 window.ResizeObserver = ResizeObserver;
 
-// Mocking the cache function for client components
+// Mocking the cache function for testing client components
 jest.mock('react', () => ({
   ...jest.requireActual('react'),
   cache: jest.fn().mockImplementation((fn) => fn),
