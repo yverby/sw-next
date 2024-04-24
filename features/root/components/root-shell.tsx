@@ -21,11 +21,9 @@ export function RootShell({ children }: React.PropsWithChildren) {
           maxW="container.xl"
           justify="space-between"
         >
-          <Link href="/">
-            <Heading as="h1" size="lg" fontWeight="800" opacity={0.9}>
-              {APP_NAME}
-            </Heading>
-          </Link>
+          <Heading as="h1" size="lg" fontWeight="800" opacity={0.9}>
+            <Link href="/">{APP_NAME}</Link>
+          </Heading>
 
           <ToggleMode />
         </Container>

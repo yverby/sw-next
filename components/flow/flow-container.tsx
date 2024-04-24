@@ -4,7 +4,7 @@ import { Box } from '@chakra-ui/react';
 
 /**
  * This component should be used as a wrapper for ReactFlow component
- * to avoid issues with dehydration of the component
+ * to avoid issues with dehydration of ReactFlow component
  *
  * The main purpose of the component is to redefine the dimensions of the element
  * depending on the exact dimensions of the parent element

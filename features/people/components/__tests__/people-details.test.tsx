@@ -5,7 +5,7 @@ import { Placeholder } from '@/components/ui';
 
 import { PeopleCard } from '../people-card';
 import { PeopleDetails } from '../people-details';
-import { PeopleDetailsGraph } from '../people-details-graph';
+import { PeopleDetailsFlow } from '../people-details-flow';
 
 jest.mock('@tanstack/react-query', () => ({
   ...jest.requireActual('@tanstack/react-query'),
@@ -19,14 +19,9 @@ jest.mock('@/components/ui', () => ({
 
 // Mocking people components
 jest.mock('../people-card');
-jest.mock('../people-details-graph');
+jest.mock('../people-details-flow');
 
-const mock = mocks({
-  useQuery,
-  PeopleCard,
-  Placeholder,
-  PeopleDetailsGraph,
-});
+const mock = mocks({ useQuery });
 
 describe('@/features/people/components/people-details', () => {
   beforeEach(() => {
@@ -37,7 +32,7 @@ describe('@/features/people/components/people-details', () => {
     mock.useQuery.mockReturnValue({ isFetching: true });
     render(<PeopleDetails id={1} />);
 
-    expect(mock.Placeholder).toHaveBeenCalledWith(
+    expect(Placeholder).toHaveBeenCalledWith(
       expect.objectContaining({ loading: true }),
       expect.anything()
     );
@@ -49,23 +44,23 @@ describe('@/features/people/components/people-details', () => {
     mock.useQuery.mockReturnValue(query);
     render(<PeopleDetails id={1} />);
 
-    expect(mock.Placeholder).toHaveBeenCalledWith(
+    expect(Placeholder).toHaveBeenCalledWith(
       expect.objectContaining({ subtitle: query.error.message }),
       expect.anything()
     );
   });
 
-  it('should render PeopleCard and PeopleDetailsGraph with data', () => {
+  it('should render PeopleCard and PeopleDetailsFlow with data', () => {
     const query = { isSuccess: true, data: {} };
 
     mock.useQuery.mockReturnValue(query);
     render(<PeopleDetails id={1} />);
 
-    expect(mock.PeopleCard).toHaveBeenCalledWith(
+    expect(PeopleCard).toHaveBeenCalledWith(
       expect.objectContaining({ data: query.data }),
       expect.anything()
     );
-    expect(mock.PeopleDetailsGraph).toHaveBeenCalledWith(
+    expect(PeopleDetailsFlow).toHaveBeenCalledWith(
       expect.objectContaining({ data: query.data }),
       expect.anything()
     );

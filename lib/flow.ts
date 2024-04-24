@@ -1,6 +1,6 @@
 import dagre from 'dagre';
 import { Edge, Node } from 'reactflow';
-import { map, concat, flatMap } from 'lodash';
+import { map, concat, flatMap, uniqueId } from 'lodash';
 
 export interface TreeNode {
   id: string;
@@ -9,28 +9,52 @@ export interface TreeNode {
   children?: TreeNode[];
 }
 
+/**
+ * The recursive function to convert an input object into a tree of nodes for reactflow
+ * @param source The object to convert
+ * @param path The root path for the current node
+ * @param paths The array of paths for subsequent tree nodes
+ * @returns The tree of nodes
+ */
+export function createTree(
+  source: Record<string, any>,
+  path: string,
+  paths: string[]
+): TreeNode {
+  const [nextPath, ...restPaths] = paths;
+
+  return {
+    id: uniqueId(`${path}-`),
+    type: path,
+    data: source,
+    children: map(source[nextPath], (child) =>
+      createTree(child, nextPath, restPaths)
+    ),
+  };
+}
+
 export function getDefaultNode(node: TreeNode): Node {
   return {
     id: node.id,
     data: node.data,
-    type: node.type ?? 'node',
+    type: node.type,
     position: { x: 0, y: 0 },
   };
 }
 
 /**
  * The recursive function to convert a tree of nodes into an array of nodes for reactflow
- * @param parentNode The root node of the tree to start recursively creating reactflow nodes
+ * @param node The root node of the tree to start the recursive creation of reactflow nodes
  * @param getNode The function that can be used to generate specific nodes (optional)
  * @returns The flat array of reactflow nodes
  */
 export function createNodes(
-  parentNode: TreeNode,
+  node: TreeNode,
   getNode: (node: TreeNode) => Node = getDefaultNode
 ): Node[] {
   return concat(
-    getNode(parentNode),
-    flatMap(parentNode.children, (node) => createNodes(node, getNode))
+    getNode(node),
+    flatMap(node.children, (child) => createNodes(child, getNode))
   );
 }
 
@@ -43,28 +67,27 @@ export function getDefaultEdge(parent: TreeNode, node: TreeNode): Edge {
 }
 
 /**
- * The recursive function to convert a tree of nodes into an array of edges for reactflow
- * @param parentNode The root node of the tree to start recursively creating reactflow edges
- * @param getEdge The function that can be used to generate specific edges (optional)
+ * The recursive function to convert a tree of nodes to an array of edges for reactflow
+ * @param node The root node of the tree to start the recursive creation of reactflow edges
+ * @param getEdge The function that can be used to create certain edges (optional)
  * @returns The flat array of reactflow edges
  */
 export function createEdges(
-  parentNode: TreeNode,
-  getEdge: (parentNode: TreeNode, node: TreeNode) => Edge = getDefaultEdge
+  node: TreeNode,
+  getEdge: (node: TreeNode, child: TreeNode) => Edge = getDefaultEdge
 ): Edge[] {
   return concat(
-    map(parentNode.children, (node) => getEdge(parentNode, node)),
-    flatMap(parentNode.children, (node) => createEdges(node, getEdge))
+    map(node.children, (child) => getEdge(node, child)),
+    flatMap(node.children, (child) => createEdges(child, getEdge))
   );
 }
 
 /**
- * The function of creating a layout for nodes depending on edges
- * is based on the dagre algorithm
- * @param nodes The set of reactflow nodes
- * @param edges The set of reactflow edges
+ * The edge-dependent layout function for nodes is based on the dagre algorithm
+ * @param nodes The flat array of reactflow nodes
+ * @param edges The flat array of reactflow edges
  * @param options The set of options to define the static size of the node (optional)
- * @returns The new object with modified nodes (their positions) and edges
+ * @returns The new object with changed nodes (their positions) and edges
  */
 export function getLayoutedElements(
   nodes: Node[],

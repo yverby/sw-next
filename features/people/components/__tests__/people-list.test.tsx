@@ -19,11 +19,7 @@ jest.mock('@/components/ui', () => ({
 // Mocking people components
 jest.mock('../people-card');
 
-const mock = mocks({
-  useInfiniteQuery,
-  Placeholder,
-  PeopleCard,
-});
+const mock = mocks({ useInfiniteQuery });
 
 describe('@/features/people/components/people-list', () => {
   beforeEach(() => {
@@ -34,7 +30,7 @@ describe('@/features/people/components/people-list', () => {
     mock.useInfiniteQuery.mockReturnValue({ isFetching: true });
     render(<PeopleList />);
 
-    expect(mock.Placeholder).toHaveBeenCalledWith(
+    expect(Placeholder).toHaveBeenCalledWith(
       expect.objectContaining({ loading: true }),
       expect.anything()
     );
@@ -46,7 +42,7 @@ describe('@/features/people/components/people-list', () => {
     mock.useInfiniteQuery.mockReturnValue(query);
     render(<PeopleList />);
 
-    expect(mock.Placeholder).toHaveBeenCalledWith(
+    expect(Placeholder).toHaveBeenCalledWith(
       expect.objectContaining({ subtitle: query.error.message }),
       expect.anything()
     );
@@ -59,7 +55,7 @@ describe('@/features/people/components/people-list', () => {
     mock.useInfiniteQuery.mockReturnValue(query);
     render(<PeopleList />);
 
-    expect(mock.PeopleCard).toHaveBeenCalledWith(
+    expect(PeopleCard).toHaveBeenCalledWith(
       expect.objectContaining({ data }),
       expect.anything()
     );

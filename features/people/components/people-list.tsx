@@ -47,6 +47,7 @@ export function PeopleList() {
               h={12}
               shadow="sm"
               fontSize={17}
+              fontWeight="800"
               isLoading={people.isFetchingNextPage}
               onClick={() => people.fetchNextPage()}
             >

@@ -24,7 +24,7 @@ const config: ThemeConfig = {
   initialColorMode: 'dark',
 };
 
-const components: DeepPartial<ThemeComponents> = {
+const components: ThemeComponents = {
   Button: {
     defaultProps: {
       variant: 'outline',
