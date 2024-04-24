@@ -26,7 +26,7 @@ export function PeopleDetails({ id }: { id: string | number }) {
         <Stack flex="1" spacing={6}>
           <PeopleCard data={details.data} />
 
-          <Card variant="outline" flex="1" shadow="md" bg="transparent">
+          <Card flex="1" shadow="md" bg="transparent">
             <CardBody as={Stack} flex="1" p={0}>
               <PeopleDetailsFlow data={details.data!} />
             </CardBody>

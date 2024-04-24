@@ -28,6 +28,10 @@ Install dependencies
   yarn install
 ```
 
+```bash
+  yarn prepare
+```
+
 Start the project
 
 ```bash
@@ -39,13 +43,13 @@ Start the project
 To run tests, run the following command
 
 ```bash
-  yarn run jest
+  yarn jest
 ```
 
 To run the tests in watch mode, run the following command
 
 ```bash
-  yarn run jest:watch
+  yarn jest:watch
 ```
 
 ## Authors

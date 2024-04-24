@@ -12,7 +12,7 @@ export function Placeholder({
 }>) {
   const innerTitle =
     typeof title === 'string' ? (
-      <Heading as="h3" fontSize="3xl" fontWeight="800">
+      <Heading as="h3" textAlign="center" fontSize="3xl" fontWeight="800">
         {title}
       </Heading>
     ) : (
@@ -21,7 +21,7 @@ export function Placeholder({
 
   const innerSubtitle =
     typeof subtitle === 'string' ? (
-      <Text fontSize="lg" fontWeight="600">
+      <Text textAlign="center" fontSize="lg" fontWeight="600">
         {subtitle}
       </Text>
     ) : (

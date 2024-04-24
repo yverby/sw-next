@@ -24,11 +24,16 @@ describe('@/features/people/api/get-people-details', () => {
 
   describe('getPeopleDetails', () => {
     it('should call all api requests', async () => {
-      mock.getPeopleById.mockResolvedValue({ name: '' });
-      mock.getFilms.mockResolvedValue({ results: [] });
-      mock.getStarships.mockResolvedValue({ results: [] });
+      const details = { name: '' };
+      const films: any = [];
+      const starships: any = [];
 
-      await getPeopleDetails({ id: 1 });
+      mock.getPeopleById.mockResolvedValue(details);
+      mock.getFilms.mockResolvedValue({ results: films });
+      mock.getStarships.mockResolvedValue({ results: starships });
+
+      const response = await getPeopleDetails({ id: 1 });
+      expect(response).toEqual({ ...details, films, starships });
 
       expect(mock.getPeopleById).toHaveBeenCalledWith({ id: 1 });
       expect(mock.getFilms).toHaveBeenCalledWith({ characters: 1 });

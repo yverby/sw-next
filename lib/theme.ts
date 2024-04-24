@@ -21,10 +21,15 @@ const colors: DeepPartial<Theme['colors']> = {
 };
 
 const config: ThemeConfig = {
-  initialColorMode: 'dark',
+  initialColorMode: 'system',
 };
 
 const components: ThemeComponents = {
+  Card: {
+    defaultProps: {
+      variant: 'outline',
+    },
+  },
   Button: {
     defaultProps: {
       variant: 'outline',

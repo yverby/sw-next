@@ -18,7 +18,7 @@ export function PeopleCard({
   data?: Partial<People | PeopleDetails>;
 }) {
   return (
-    <Card variant="outline" shadow="sm" bg="transparent">
+    <Card shadow="sm" bg="transparent">
       <CardHeader opacity={0.9}>
         <Heading as="h3" fontSize={28} noOfLines={1} fontWeight="900">
           {data?.name ?? 'Noname'}
